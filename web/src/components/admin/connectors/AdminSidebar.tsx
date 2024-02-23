@@ -59,13 +59,11 @@ export function AdminSidebar({ collections }: { collections: Collection[] }) {
                         {enterpriseSettings.application_name}
                       </HeaderTitle>
                       {!NEXT_PUBLIC_DO_NOT_USE_TOGGLE_OFF_DANSWER_POWERED && (
-                        <p className="text-xs text-subtle">
-                          Powered by Danswer
-                        </p>
+                        <p className="text-xs text-subtle">Powered by Bacon</p>
                       )}
                     </div>
                   ) : (
-                    <HeaderTitle>Danswer</HeaderTitle>
+                    <HeaderTitle>Bacon</HeaderTitle>
                   )}
                 </div>
               </div>
@@ -79,7 +77,7 @@ export function AdminSidebar({ collections }: { collections: Collection[] }) {
               <p className="ml-1 break-words line-clamp-2 ellipsis leading-none">
                 Back to{" "}
                 {combinedSettings.enterpriseSettings?.application_name ||
-                  "Danswer"}
+                  "Bacon"}
               </p>
             </button>
           </Link>
