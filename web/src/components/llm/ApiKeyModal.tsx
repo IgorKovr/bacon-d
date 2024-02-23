@@ -28,7 +28,7 @@ export const ApiKeyModal = ({ hide }: { hide: () => void }) => {
         <div>
           <div className="mb-5 text-sm">
             Please provide an API Key below in order to start using
-            Danswer – you can always change this later.
+            Bacon – you can always change this later.
             <br />
             If you&apos;d rather look around first, you can
             <strong onClick={() => hide()} className="text-link cursor-pointer">

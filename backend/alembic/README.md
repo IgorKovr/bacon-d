@@ -1,8 +1,6 @@
-<!-- DANSWER_METADATA={"link": "https://github.com/danswer-ai/danswer/blob/main/backend/alembic/README.md"} -->
-
 # Alembic DB Migrations
 These files are for creating/updating the tables in the Relational DB (Postgres).
-Danswer migrations use a generic single-database configuration with an async dbapi.
+Bacon migrations use a generic single-database configuration with an async dbapi.
 
 ## To generate new migrations: 
 run from danswer/backend:
