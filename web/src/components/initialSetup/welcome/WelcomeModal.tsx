@@ -59,12 +59,12 @@ export function _WelcomeModal({ user }: { user: User | null }) {
       {popup}
 
       <Modal
-        title={"Welcome to Danswer!"}
+        title={"Welcome to Bacon!"}
         width="w-full max-h-[900px] overflow-y-scroll max-w-3xl"
       >
         <div>
           <Text className="mb-4">
-            Danswer brings all your company&apos;s knowledge to your fingertips,
+            Bacon brings all your company&apos;s knowledge to your fingertips,
             ready to be accessed instantly.
           </Text>
           <Text className="mb-4">

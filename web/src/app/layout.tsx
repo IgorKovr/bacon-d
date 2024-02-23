@@ -38,7 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    title: enterpriseSettings?.application_name ?? "Danswer",
+    title: enterpriseSettings?.application_name ?? "Bacon",
     description: "Question answering for your documents",
     icons: {
       icon: logoLocation,
@@ -67,7 +67,7 @@ export default async function RootLayout({
         <body className="bg-background text-default">
           <div className="flex flex-col items-center justify-center min-h-screen">
             <div className="mb-2 flex items-center max-w-[175px]">
-              <HeaderTitle>Danswer</HeaderTitle>
+              <HeaderTitle>Bacon</HeaderTitle>
               <Logo height={40} width={40} />
             </div>
 

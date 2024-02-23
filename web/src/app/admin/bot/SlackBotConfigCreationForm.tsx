@@ -152,8 +152,8 @@ export const SlackBotCreationForm = ({
               const errorMsg = responseJson.detail || responseJson.message;
               setPopup({
                 message: isUpdate
-                  ? `Error updating DanswerBot config - ${errorMsg}`
-                  : `Error creating DanswerBot config - ${errorMsg}`,
+                  ? `Error updating BaconBot config - ${errorMsg}`
+                  : `Error creating BaconBot config - ${errorMsg}`,
                 type: "error",
               });
             }
