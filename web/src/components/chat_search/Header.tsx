@@ -80,7 +80,7 @@ export default function FunctionalHeader({
                   )}
                 </div>
               ) : (
-                <HeaderTitle>Danswer</HeaderTitle>
+                <HeaderTitle>Bacon</HeaderTitle>
               )}
             </div>
           </div>
