@@ -1,11 +1,3 @@
-<!-- DANSWER_METADATA={"link": "https://github.com/danswer-ai/danswer/blob/main/CONTRIBUTING.md"} -->
-
-# Contributing to Danswer
-Hey there! We are so excited that you're interested in Danswer.
-
-As an open source project in a rapidly changing space, we welcome all contributions.
-
-
 ## 💃 Guidelines
 ### Contribution Opportunities
 The [GitHub Issues](https://github.com/danswer-ai/danswer/issues) page is a great place to start for contribution ideas.
