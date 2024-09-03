@@ -2,7 +2,7 @@
 
 import React, { ReactNode, useContext, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { ChatIcon, SearchIcon } from "@/components/icons/icons";
+import { ChatIcon, GearIcon, SearchIcon } from "@/components/icons/icons";
 import { SettingsContext } from "@/components/settings/SettingsProvider";
 import KeyboardSymbol from "@/lib/browserUtilities";
 
@@ -39,10 +39,10 @@ const ToggleSwitch = () => {
     <div className="bg-gray-100 mobile:mt-8 flex rounded-full p-1">
       <div
         className={`absolute mobile:mt-8 top-1 bottom-1 ${
-          activeTab === "chat" ? "w-[45%]" : "w-[50%]"
+          activeTab === "chat" ? "w-[30%]" : "w-[32%]"
         } bg-white rounded-full shadow ${
           isInitialLoad ? "" : "transition-transform duration-300 ease-in-out"
-        } ${activeTab === "chat" ? "translate-x-[115%]" : "translate-x-[1%]"}`}
+        } ${activeTab === "chat" ? "translate-x-[100%]" : "translate-x-[1%]"}`}
       />
       <button
         className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ease-in-out flex items-center relative z-10 ${
@@ -80,6 +80,20 @@ const ToggleSwitch = () => {
             </span>
             <span className="my-auto">D</span>
           </div>
+        </div>
+      </button>
+      <button
+        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ease-in-out flex items-center relative z-10 ${
+          activeTab === "chat"
+            ? "text-gray-800"
+            : "text-gray-500 hover:text-gray-700"
+        }`}
+        onClick={() => handleTabChange("chat")}
+      >
+        <GearIcon size={16} className="mr-2" />
+        <div className="items-end flex">
+          Workflows
+          <div className="ml-2 flex items-end">{commandSymbol}W</div>
         </div>
       </button>
     </div>
