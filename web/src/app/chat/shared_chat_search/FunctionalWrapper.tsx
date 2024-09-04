@@ -26,9 +26,9 @@ const ToggleSwitch = () => {
     const newTab =
       pathname === "/search"
         ? "search"
-        : pathname === "/workflows"
-          ? "workflows"
-          : "chat";
+        : pathname === "/chat"
+          ? "chat"
+          : "workflows";
     setActiveTab(newTab);
     localStorage.setItem("activeTab", newTab);
     setIsInitialLoad(false);
@@ -41,11 +41,7 @@ const ToggleSwitch = () => {
       window.location.href = tab;
     } else {
       router.push(
-        tab === "search"
-          ? "/search"
-          : tab === "workflows"
-            ? "/workflows"
-            : "/chat"
+        tab === "search" ? "/search" : tab === "chat" ? "/chat" : "/workflows"
       );
     }
   };
