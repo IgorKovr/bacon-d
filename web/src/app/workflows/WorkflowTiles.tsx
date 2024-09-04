@@ -8,7 +8,7 @@ import {
   Envelope,
 } from "@phosphor-icons/react";
 
-type Workflow = {
+export type Workflow = {
   title: string;
   subtitle: string;
   icon: React.ReactNode;
@@ -49,13 +49,13 @@ const defaultWorkflows: Workflow[] = [
 
 type WorkflowsPageProps = {
   workflows?: Workflow[];
+  onSelectedWorkflow: (workflow: Workflow) => void;
 };
 
 export default function WorkflowTiles({
   workflows = defaultWorkflows,
+  onSelectedWorkflow,
 }: WorkflowsPageProps) {
-  const [selectedWorkflow, setSelectedWorkflow] = useState<string | null>(null);
-
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -63,7 +63,7 @@ export default function WorkflowTiles({
           <div
             key={index}
             className="bg-white rounded-lg shadow-md p-6 cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105"
-            onClick={() => setSelectedWorkflow(workflow.title)}
+            onClick={() => onSelectedWorkflow(workflow)}
           >
             <div className="flex items-center justify-center mb-4">
               {workflow.icon}
@@ -75,13 +75,6 @@ export default function WorkflowTiles({
           </div>
         ))}
       </div>
-      {selectedWorkflow && (
-        <div className="mt-8 text-center">
-          <p className="text-lg font-semibold">
-            Selected Workflow: {selectedWorkflow}
-          </p>
-        </div>
-      )}
     </div>
   );
 }
