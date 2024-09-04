@@ -5,7 +5,7 @@ import {
   Users,
   Gear,
   ChartBar,
-  Envelope,
+  Plus,
 } from "@phosphor-icons/react";
 
 export type Workflow = {
@@ -16,34 +16,39 @@ export type Workflow = {
 
 const defaultWorkflows: Workflow[] = [
   {
-    title: "Analytics",
-    subtitle: "Track your data",
+    title: "Company analysis and reporting",
+    subtitle:
+      "Automatic report about specific company based on annual regulatory filiings and recent market data",
     icon: <ChartBar size={32} />,
   },
   {
-    title: "Reporting",
-    subtitle: "Generate reports",
+    title: "Company outlook estimation",
+    subtitle:
+      "Short-term outlook about the company based on financials, stock prices and latest news.",
     icon: <FileText size={32} />,
   },
   {
-    title: "Team Management",
-    subtitle: "Manage your team",
-    icon: <Users size={32} />,
+    title: "Competitive analysis",
+    subtitle:
+      "Research competitive landscape of the company, including compraible analysis.",
+    icon: <FileText size={32} />,
   },
   {
-    title: "Settings",
-    subtitle: "Configure your Workflows",
+    title: "Regulations overview",
+    subtitle:
+      "Review regulatory documents and prepare on overview of requirements and initial impact estimations.",
     icon: <Gear size={32} />,
   },
   {
-    title: "Activity",
-    subtitle: "Monitor actions",
+    title: "Analyst research",
+    subtitle:
+      "Review analyst research about company, while focusing on key changes of estimations and of future outlook over time",
     icon: <Activity size={32} />,
   },
   {
-    title: "Communications",
-    subtitle: "Manage messages",
-    icon: <Envelope size={32} />,
+    title: "Add new",
+    subtitle: "Create your custom workflow",
+    icon: <Plus size={32} />,
   },
 ];
 
