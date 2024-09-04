@@ -19,10 +19,7 @@ export default function EditWorkflowPage() {
           <div className="flex relative pr-[8px] h-full text-default">
             <div className="flex-none fixed left-0 z-30 bg-background-100 h-screen transition-all bg-opacity-80 duration-300 ease-in-out">
               <div className="w-full relative">
-                <HistorySidebar
-                  explicitlyUntoggle={() => {}}
-                  page="workflows"
-                />
+                <HistorySidebar explicitlyUntoggle={() => {}} page="chat" />
               </div>
             </div>
 
