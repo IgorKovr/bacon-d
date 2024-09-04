@@ -32,21 +32,23 @@ export default function WorkflowEditor({
   };
 
   const handleDownload = () => {
-    // In a real application, replace this with the actual file path
-    const filePath = "/path/to/your/file.txt";
+    // path relative to the public directory
+    const filePath = "/files/Walmart_Annual_Report_2023.pdf";
+
+    // Create an anchor element and trigger the download
     const link = document.createElement("a");
-    link.href = filePath;
-    link.download = "result.txt";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    link.href = filePath; // Set the file path
+    link.download = "Walmart_Annual_Report_2023.pdf"; // Set the default file name for download
+    document.body.appendChild(link); // Append the link to the body
+    link.click(); // Trigger the download
+    document.body.removeChild(link); // Clean up and remove the link
   };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="bg-white shadow-xl rounded-lg overflow-hidden">
         <div className="pl-20 pr-[60px] py-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">{title}</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">{title}</h2>
           <p className="text-xl text-gray-600 mb-6">{subtitle}</p>
           <div className="mb-6">
             <div className="flex justify-between items-center mb-2">
