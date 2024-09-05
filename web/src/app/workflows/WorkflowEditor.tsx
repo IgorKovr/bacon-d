@@ -33,12 +33,15 @@ export default function WorkflowEditor({
 
   const handleDownload = () => {
     // path relative to the public directory
-    const filePath = "/files/Walmart_Annual_Report_2023.pdf";
 
+    const filePath = json.includes("Apple")
+      ? "/files/AAPL_overview.pdf"
+      : "/files/Walmart_Annual_Report_2023.pdf";
+    const fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
     // Create an anchor element and trigger the download
     const link = document.createElement("a");
     link.href = filePath; // Set the file path
-    link.download = "Walmart_Annual_Report_2023.pdf"; // Set the default file name for download
+    link.download = fileName;
     document.body.appendChild(link); // Append the link to the body
     link.click(); // Trigger the download
     document.body.removeChild(link); // Clean up and remove the link
