@@ -202,11 +202,11 @@ export const SlackBotCreationForm = ({
                       <br />
                       If set to Quotes, BaconBot will respond with a direct
                       answer as well as with quotes pulled from the context
-                      documents to support that answer. BaconBot will also
-                      give a list of relevant documents. Choose this option if
-                      you want a very detailed response AND/OR a list of
-                      relevant documents would be useful just in case the LLM
-                      missed anything.
+                      documents to support that answer. BaconBot will also give
+                      a list of relevant documents. Choose this option if you
+                      want a very detailed response AND/OR a list of relevant
+                      documents would be useful just in case the LLM missed
+                      anything.
                     </>
                   }
                   options={[
@@ -278,7 +278,7 @@ export const SlackBotCreationForm = ({
                         <br />
                         Or provide a user group by either the name or the
                         handle. For example, &apos;Bacon Team&apos; or
-                        &apos;danswer-team&apos;.
+                        &apos;bacon-team&apos;.
                         <br />
                         <br />
                         If no emails are provided, we will not tag anyone and
@@ -295,8 +295,8 @@ export const SlackBotCreationForm = ({
                     [Optional] Data Sources and Prompts
                   </SectionHeader>
                   <Text>
-                    Use either an Assistant <b>or</b> Document Sets to control how
-                    BaconBot answers.
+                    Use either an Assistant <b>or</b> Document Sets to control
+                    how BaconBot answers.
                   </Text>
                   <Text>
                     <ul className="list-disc mt-2 ml-4">
