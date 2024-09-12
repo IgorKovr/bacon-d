@@ -176,7 +176,7 @@ export const SlackBotCreationForm = ({
                   <Label>Knowledge Sources</Label>
 
                   <SubLabel>
-                    Controls which information DanswerBot will pull from when
+                    Controls which information BaconBot will pull from when
                     answering questions.
                   </SubLabel>
 
