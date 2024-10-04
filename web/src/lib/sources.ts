@@ -279,11 +279,11 @@ const SOURCE_METADATA_MAP: SourceMap = {
     category: SourceCategory.Storage,
     docs: "https://docs.danswer.dev/connectors/google_storage",
   },
-  xenforo: {
-    icon: XenforoIcon,
-    displayName: "Xenforo",
-    category: SourceCategory.Messaging,
-  },
+  // xenforo: {
+  //   icon: XenforoIcon,
+  //   displayName: "Xenforo",
+  //   category: SourceCategory.Messaging,
+  // },
   ingestion_api: {
     icon: GlobeIcon,
     displayName: "Ingestion",
