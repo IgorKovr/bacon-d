@@ -550,8 +550,7 @@ export function ChatInputBar({
                   Icon={AssistantsIconSkeleton as IconType}
                 />
               </Popup>
-              {/* TODO: Enable LLM selection for Admin / Super-Admin users */}
-              {/* <Popup
+              <Popup
                 tab
                 content={(close, ref) => (
                   <LlmTab
@@ -572,8 +571,8 @@ export function ChatInputBar({
                   />
                 )}
                 position="top"
-              > */}
-              {/* <ChatInputOption
+              >
+                <ChatInputOption
                   flexPriority="second"
                   toggle
                   name={
@@ -589,8 +588,8 @@ export function ChatInputBar({
                         )
                   }
                   Icon={CpuIconSkeleton}
-                /> */}
-              {/* </Popup> */}
+                />
+              </Popup>
 
               <ChatInputOption
                 flexPriority="stiff"
