@@ -2370,7 +2370,8 @@ export function ChatPage({
                             {currentPersona &&
                               currentPersona.starter_messages &&
                               currentPersona.starter_messages.length > 0 &&
-                              selectedAssistant &&
+                              // The next line is commented to enable message prompts on default chat page, without the need for the user to select a new assistant
+                              // selectedAssistant &&
                               messageHistory.length === 0 &&
                               !isFetchingChatMessages && (
                                 <div
