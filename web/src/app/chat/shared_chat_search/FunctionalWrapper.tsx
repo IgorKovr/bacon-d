@@ -2,7 +2,7 @@
 
 import React, { ReactNode, useContext, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { ChatIcon, SearchIcon } from "@/components/icons/icons";
+import { ChatIcon, GearIcon, SearchIcon } from "@/components/icons/icons";
 import { SettingsContext } from "@/components/settings/SettingsProvider";
 import KeyboardSymbol from "@/lib/browserUtilities";
 
@@ -13,13 +13,22 @@ const ToggleSwitch = () => {
   const settings = useContext(SettingsContext);
 
   const [activeTab, setActiveTab] = useState(() => {
-    return pathname == "/search" ? "search" : "chat";
+    return pathname === "/search"
+      ? "search"
+      : pathname === "/workflows"
+        ? "workflows"
+        : "chat";
   });
 
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   useEffect(() => {
-    const newTab = pathname === "/search" ? "search" : "chat";
+    const newTab =
+      pathname === "/search"
+        ? "search"
+        : pathname === "/chat"
+          ? "chat"
+          : "workflows";
     setActiveTab(newTab);
     localStorage.setItem("activeTab", newTab);
     setIsInitialLoad(false);
@@ -31,7 +40,9 @@ const ToggleSwitch = () => {
     if (settings?.isMobile && window) {
       window.location.href = tab;
     } else {
-      router.push(tab === "search" ? "/search" : "/chat");
+      router.push(
+        tab === "search" ? "/search" : tab === "chat" ? "/chat" : "/workflows"
+      );
     }
   };
 
@@ -39,10 +50,14 @@ const ToggleSwitch = () => {
     <div className="bg-gray-100 mobile:mt-8 flex rounded-full p-1">
       <div
         className={`absolute mobile:mt-8 top-1 bottom-1 ${
-          activeTab === "chat" ? "w-[45%]" : "w-[50%]"
+          activeTab === "chat"
+            ? "w-[29%]"
+            : activeTab === "workflows"
+              ? "w-[38%]"
+              : "w-[33%]"
         } bg-white rounded-full shadow ${
           isInitialLoad ? "" : "transition-transform duration-300 ease-in-out"
-        } ${activeTab === "chat" ? "translate-x-[115%]" : "translate-x-[1%]"}`}
+        } ${activeTab === "chat" ? "translate-x-[110%]" : activeTab === "workflows" ? "translate-x-[158%]" : "translate-x-[1%]"}`}
       />
       <button
         className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ease-in-out flex items-center relative z-10 ${
@@ -82,6 +97,20 @@ const ToggleSwitch = () => {
           </div>
         </div>
       </button>
+      <button
+        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ease-in-out flex items-center relative z-10 ${
+          activeTab === "workflows"
+            ? "text-gray-800"
+            : "text-gray-500 hover:text-gray-700"
+        }`}
+        onClick={() => handleTabChange("workflows")}
+      >
+        <GearIcon size={16} className="mr-2" />
+        <div className="items-end flex">
+          Workflows
+          <div className="ml-2 flex items-end">{commandSymbol}I</div>
+        </div>
+      </button>
     </div>
   );
 };
@@ -117,6 +146,14 @@ export default function FunctionalWrapper({
               window.open("/search", "_blank");
             } else {
               router.push("/search");
+            }
+            break;
+          case "i":
+            event.preventDefault();
+            if (newPage) {
+              window.open("/workflows", "_blank");
+            } else {
+              router.push("/workflows");
             }
             break;
         }
