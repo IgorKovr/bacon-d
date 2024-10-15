@@ -3,21 +3,15 @@ import { Trophy, Rocket, Check } from "@phosphor-icons/react";
 import { Button, TextInput, Card, Title, Text } from "@tremor/react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/components/user/UserProvider";
+import Cookies from "js-cookie";
 
-interface EnterpriseAccessModalProps {
-  email: string;
-  onSend: (email: string) => void;
-  onClose: () => void;
-}
+export function EnterpriseAccessModal() {
+  const [isSubmitted, setIsSubmitted] = useState(() => {
+    return Cookies.get("isSubmitted") === "true";
+  });
 
-export function EnterpriseAccessModal({
-  email: initialEmail,
-  onSend,
-  onClose,
-}: EnterpriseAccessModalProps) {
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const { user } = useUser();
-  const [email, setEmail] = useState(user?.email || initialEmail);
+  const [email, setEmail] = useState(user?.email || "");
   const router = useRouter();
 
   async function sendAccessRequest(email: string): Promise<Response> {
@@ -34,7 +28,6 @@ export function EnterpriseAccessModal({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSend(email);
 
     const response = await sendAccessRequest(email);
     if (response.ok) {
@@ -44,11 +37,10 @@ export function EnterpriseAccessModal({
     }
 
     setIsSubmitted(true);
+    Cookies.set("isSubmitted", "true");
   };
 
   const handleClose = () => {
-    onClose();
-    setIsSubmitted(false);
     router.push(`/chat`);
   };
 
