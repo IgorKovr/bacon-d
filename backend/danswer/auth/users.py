@@ -254,24 +254,23 @@ def send_eneterprise_notification_email_to_Bacon(
 
 # Create the email content (plain text)
 eneterprise_signup_email_content = """
-Dear Bacon User,
+Heeey👋
 
-We’re excited to help you unlock the full potential of our enterprise features.
+Thank you for your interest in Bacon! 🎉
+We’re excited to help you make the most of our enterprise features.
 
-We’d love to connect with you to better understand your needs and tailor Bacon’s solutions to your specific goals.
-You can easily book a quick meeting with our team using the link below:
+Before we activate your access, we’d love to chat briefly to better understand your needs and customize Bacon’s solutions for you.
+You can easily schedule a quick meeting with our team using the link below:
 
+Schedule a meeting
 https://calendly.com/meet-bacon/45
 
-We look forward to discussing how Bacon can enhance your workflow,
-from automating complex tasks to optimizing your financial analysis.
+We’re eager to discuss how Bacon can streamline your processes, from automating tasks to improving your financial analysis.
+If you have any questions in the meantime, feel free to reach out at founders@bacon.tech
 
-If you have any immediate questions, feel free to reach out at mailto:founders@bacon.tech
+Looking forward to connecting soon!
 
-Looking forward to speaking with you soon!
-
-Best regards,
-Bacon Team
+-- The Bacon Team
 """
 
 

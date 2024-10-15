@@ -44,6 +44,7 @@ import UnconfiguredProviderText from "../chat_search/UnconfiguredProviderText";
 import { DateRangePickerValue } from "@tremor/react";
 import { Tag } from "@/lib/types";
 import { isEqual } from "lodash";
+import { EnterpriseAccessModal } from "@/components/EnterpriseAccessModal";
 
 export type searchState =
   | "input"
@@ -623,6 +624,7 @@ export const SearchSection = ({
 
   return (
     <>
+      <EnterpriseAccessModal />
       <div className="flex relative pr-[8px] h-full text-default">
         {popup}
 
