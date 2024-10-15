@@ -223,6 +223,79 @@ def send_user_verification_email(
         s.send_message(msg)
 
 
+def send_eneterprise_notification_email_to_Bacon(
+    user_email: str,
+    mail_from: str = EMAIL_FROM,
+) -> None:
+    msg = MIMEMultipart()
+    msg["Subject"] = "We got an Enerprise Request 🚀"
+    msg["To"] = "founders@bacon.com"
+    if mail_from:
+        msg["From"] = mail_from
+
+    body = MIMEText(
+        f"""Fellow Baconeers,
+
+        A new user has requested enterprise access: {user_email}
+
+        Please review their request and get back to them ASAP.
+
+        - The Bacon Team"""
+    )
+    msg.attach(body)
+
+    with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as s:
+        s.starttls()
+        # If credentials fails with gmail, check (You need an app password, not just the basic email password)
+        # https://support.google.com/accounts/answer/185833?sjid=8512343437447396151-NA
+        s.login(SMTP_USER, SMTP_PASS)
+        s.send_message(msg)
+
+
+# Create the email content (plain text)
+eneterprise_signup_email_content = """
+Dear Bacon User,
+
+We’re excited to help you unlock the full potential of our enterprise features.
+
+We’d love to connect with you to better understand your needs and tailor Bacon’s solutions to your specific goals.
+You can easily book a quick meeting with our team using the link below:
+
+https://calendly.com/meet-bacon/45
+
+We look forward to discussing how Bacon can enhance your workflow,
+from automating complex tasks to optimizing your financial analysis.
+
+If you have any immediate questions, feel free to reach out at mailto:founders@bacon.tech
+
+Looking forward to speaking with you soon!
+
+Best regards,
+Bacon Team
+"""
+
+
+def send_eneterprise_request_confirmation_email(
+    user_email: str,
+    mail_from: str = EMAIL_FROM,
+) -> None:
+    msg = MIMEMultipart()
+    msg["Subject"] = "Thank you for your interest in Bacon Eneterprise! 🚀"
+    msg["To"] = user_email
+    if mail_from:
+        msg["From"] = mail_from
+
+    body = MIMEText(eneterprise_signup_email_content)
+    msg.attach(body)
+
+    with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as s:
+        s.starttls()
+        # If credentials fails with gmail, check (You need an app password, not just the basic email password)
+        # https://support.google.com/accounts/answer/185833?sjid=8512343437447396151-NA
+        s.login(SMTP_USER, SMTP_PASS)
+        s.send_message(msg)
+
+
 class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
     reset_password_token_secret = USER_AUTH_SECRET
     verification_token_secret = USER_AUTH_SECRET
