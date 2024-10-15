@@ -1,4 +1,5 @@
 "use client";
+import { EnterpriseAccessModal } from "@/components/EnterpriseAccessModal";
 import { SourceIcon } from "@/components/SourceIcon";
 import { AdminPageTitle } from "@/components/admin/Title";
 import { ConnectorIcon } from "@/components/icons/icons";
@@ -96,6 +97,7 @@ export default function Page() {
 
   return (
     <div className="mx-auto container">
+      <EnterpriseAccessModal />
       <AdminPageTitle
         icon={<ConnectorIcon size={32} />}
         title="Add Connector"
