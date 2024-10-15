@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Trophy, Rocket, Check } from "@phosphor-icons/react";
 import { Button, TextInput, Card, Title, Text } from "@tremor/react";
 import { useRouter } from "next/navigation";
+import { useUser } from "@/components/user/UserProvider";
 
 interface EnterpriseAccessModalProps {
   email: string;
@@ -15,7 +16,8 @@ export function EnterpriseAccessModal({
   onClose,
 }: EnterpriseAccessModalProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [email, setEmail] = useState(initialEmail);
+  const { user } = useUser();
+  const [email, setEmail] = useState(user?.email || initialEmail);
   const router = useRouter();
 
   async function sendAccessRequest(email: string): Promise<Response> {
