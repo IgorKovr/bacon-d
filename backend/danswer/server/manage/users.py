@@ -498,6 +498,27 @@ def verify_user_logged_in(
     return user_info
 
 
+class EnterpriseSignupRequest(BaseModel):
+    email: str
+
+
+@router.post("/enterprise_signup")
+async def enterprise_signup(
+    request: EnterpriseSignupRequest, _: User = Depends(current_user)
+):
+    try:
+        # Log the email
+        logger.info(f"Received enterprise signup request for email: {request.email}")
+        return {"message": "Signup request received"}
+    except Exception as e:
+        logger.error(f"Error processing signup request: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Internal Server Error",
+        )
+        raise RuntimeError("This should never happen")
+
+
 """APIs to adjust user preferences"""
 
 

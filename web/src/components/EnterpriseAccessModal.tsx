@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Trophy, Rocket, Check } from "@phosphor-icons/react";
 import { Button, TextInput, Card, Title, Text } from "@tremor/react";
+import { useRouter } from "next/navigation";
 
 interface EnterpriseAccessModalProps {
   email: string;
@@ -15,16 +16,38 @@ export function EnterpriseAccessModal({
 }: EnterpriseAccessModalProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [email, setEmail] = useState(initialEmail);
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  async function sendAccessRequest(email: string): Promise<Response> {
+    const response = await fetch(`/api/enterprise_signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: email }),
+    });
+
+    return response;
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     onSend(email);
+
+    const response = await sendAccessRequest(email);
+    if (response.ok) {
+      console.log(`Sending request for email!`);
+    } else {
+      console.error(`Sending request for email failed`);
+    }
+
     setIsSubmitted(true);
   };
 
   const handleClose = () => {
     onClose();
     setIsSubmitted(false);
+    router.push(`/chat`);
   };
 
   return (
