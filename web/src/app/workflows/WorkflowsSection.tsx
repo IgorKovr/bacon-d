@@ -3,6 +3,7 @@
 import FixedLogo from "@/app/chat/shared_chat_search/FixedLogo";
 import WorkflowTiles, { Workflow } from "./WorkflowTiles";
 import { useRouter } from "next/navigation";
+import { EnterpriseAccessModal } from "@/components/EnterpriseAccessModal";
 
 export const WorkflowsSection = () => {
   const router = useRouter();
@@ -12,11 +13,11 @@ export const WorkflowsSection = () => {
       title: workflow.title,
       subtitle: workflow.subtitle,
     });
-    router.push(`/workflows/edit?${params.toString()}`);
   };
 
   return (
     <>
+      <EnterpriseAccessModal />
       <div className="flex relative pr-[8px] h-full text-default">
         <div className="absolute include-scrollbar h-screen overflow-y-auto left-0 w-full top-0">
           <div className="w-full flex">
