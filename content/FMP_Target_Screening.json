@@ -1,12 +1,12 @@
 {
   "info": {
-    "title": "Target screening",
+    "title": "FMP [tested]",
     "description": "This API allows for fetching various financial market data including stock quotes, company profiles, stock screeners, and income statements."
   },
   "paths": {
     "v3/quote/{symbol}": {
       "get": {
-        "summary": "Full Quote",
+        "summary": "A detailed quote of the stock's price and volume",
         "parameters": [
           {
             "in": "path",
@@ -16,7 +16,7 @@
               "example": "AAPL"
             },
             "required": true,
-            "description": "The stock ticker symbol of the company."
+            "description": "The stock ticker symbol of the company"
           },
           {
             "in": "query",
@@ -28,13 +28,13 @@
             "description": "API key"
           }
         ],
-        "description": "A detailed quote of the stock's price and volume.",
-        "operationId": "getFullQuote"
+        "description": "A detailed quote of the stock's price and volume",
+        "operationId": "FullQuote"
       }
     },
     "v3/stock-screener": {
       "get": {
-        "summary": "Screener (Stock)",
+        "summary": "Search for stocks based on various criteria, such as market cap, price, volume, beta, sector, and country",
         "parameters": [
           {
             "in": "query",
@@ -83,12 +83,12 @@
           }
         ],
         "description": "Search for stocks based on various criteria, such as market cap, price, volume, beta, sector, and country",
-        "operationId": "getStockScreener"
+        "operationId": "StockScreener"
       }
     },
     "v3/profile/{symbol}": {
       "get": {
-        "summary": "Company Profile",
+        "summary": "Provides key information about the company such as price, beta, market capitalization, description, headquarters, and more",
         "parameters": [
           {
             "in": "path",
@@ -110,13 +110,13 @@
             "description": "API key"
           }
         ],
-        "description": "provides key information about the company such as price, beta, market capitalization, description, headquarters, and more",
-        "operationId": "getCompanyProfile"
+        "description": "Provides key information about the company such as price, beta, market capitalization, description, headquarters, and more",
+        "operationId": "CompanyProfile"
       }
     },
     "v3/income-statement/{symbol}": {
       "get": {
-        "summary": "Retrieve Income Statements",
+        "summary": "Financial statements of a company, including balance sheet, income statement, and cash flow statement available in annual and quarterly format",
         "parameters": [
           {
             "in": "path",
@@ -153,7 +153,224 @@
           }
         ],
         "description": "Financial statements of a company, including balance sheet, income statement, and cash flow statement available in annual and quarterly format",
-        "operationId": "getIncomeStatement"
+        "operationId": "IncomeStatement"
+      }
+    },
+    "v3/stock_news": {
+      "get": {
+        "summary": "Get a list of the latest stock news articles from a variety of sources, including the headline, snippet, publication URL",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tickers",
+            "schema": {
+              "type": "string",
+              "example": "AAPL,FB"
+            },
+            "required": true,
+            "description": "Comma-separated list of stock tickers"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number",
+              "example": 3
+            },
+            "required": false,
+            "description": "Page number of the results"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2024-01-01"
+            },
+            "required": false,
+            "description": "Start date for the news articles"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2024-03-01"
+            },
+            "required": false,
+            "description": "End date for the news articles"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "example": 50
+            },
+            "required": false,
+            "description": "Limit the number of results per page"
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "API key"
+          }
+        ],
+        "description": "Get a list of the latest stock news articles from a variety of sources, including the headline, snippet, publication URL",
+        "operationId": "StockNews"
+      }
+    },
+    "v3/discounted-cash-flow/{symbol}": {
+      "get": {
+        "summary": "Get the discounted cash flow (DCF) valuation for a company, a method to estimate the value of an investment based on its expected future cash flows",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The stock ticker symbol of the company"
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "API key"
+          }
+        ],
+        "description": "Get the discounted cash flow (DCF) valuation for a company, a method to estimate the value of an investment based on its expected future cash flows",
+        "operationId": "DiscountedCashFlow"
+      }
+    },
+    "v3/balance-sheet-statement/{symbol}": {
+      "get": {
+        "summary": "Balance sheet of a company. Displays a company’s total assets, liabilities, and shareholder equity over a specific timeframe",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "schema": {
+              "type": "string",
+              "example": "AAPL"
+            },
+            "required": true,
+            "description": "The stock ticker symbol of the company"
+          },
+          {
+            "in": "query",
+            "name": "period",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "The reporting period (e.g., annual, quarterly)"
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "API key"
+          }
+        ],
+        "description": "Balance sheet of a company. Displays a company’s total assets, liabilities, and shareholder equity over a specific timeframe",
+        "operationId": "BalanceSheetStatements"
+      }
+    },
+    "v3/earning_call_transcript/{symbol}": {
+      "get": {
+        "summary": "Get the full transcript of an earnings call for a specific company in text format.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "schema": {
+              "type": "string",
+              "example": "AAPL"
+            },
+            "required": true,
+            "description": "The stock ticker symbol of the company (e.g., AAPL)."
+          },
+          {
+            "in": "query",
+            "name": "year",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The year of the earnings call transcript."
+          },
+          {
+            "in": "query",
+            "name": "quarter",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The quarter of the earnings call transcript."
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "API key"
+          }
+        ],
+        "description": "Get the full transcript of an earnings call for a specific company in text format. This endpoint can be used to learn more about a company's financial performance, future plans, and overall strategy.",
+        "operationId": "EarningsCallTranscript"
+      }
+    },
+    "v4/batch_earning_call_transcript/{symbol}": {
+      "get": {
+        "summary": "Batch export of transcripts for specific year.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "schema": {
+              "type": "string",
+              "example": "AAPL"
+            },
+            "required": true,
+            "description": "The stock ticker symbol of the company (e.g., AAPL)."
+          },
+          {
+            "in": "query",
+            "name": "year",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The year of the earnings call transcripts."
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "API key"
+          }
+        ],
+        "description": "Batch export of transcripts for a specific year.",
+        "operationId": "BatchExportEarningsCallTranscripts"
       }
     }
   },
