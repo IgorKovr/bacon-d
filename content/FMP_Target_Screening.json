@@ -372,6 +372,58 @@
         "description": "Batch export of transcripts for a specific year.",
         "operationId": "BatchExportEarningsCallTranscripts"
       }
+    },
+    "v3/analyst-estimates/{symbol}": {
+      "get": {
+        "summary": "Provides analyst estimates for a company's future earnings and revenue",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "schema": {
+              "type": "string",
+              "example": "AAPL"
+            },
+            "required": true,
+            "description": "Stock symbol of the company"
+          },
+          {
+            "in": "query",
+            "name": "period",
+            "schema": {
+              "enum": [
+                "annual",
+                "quarter"
+              ],
+              "type": "string",
+              "example": "annual"
+            },
+            "required": false,
+            "description": "Period for the estimates"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "example": 30
+            },
+            "required": false,
+            "description": "Limit the number of results"
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "API key"
+          }
+        ],
+        "description": "Provides analyst estimates for a company's future earnings and revenue",
+        "operationId": "AnalystEstimates"
+      }
     }
   },
   "openapi": "3.1.0",
