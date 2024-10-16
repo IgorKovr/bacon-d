@@ -3,18 +3,10 @@
     "title": "Target screening",
     "description": "This API allows for fetching various financial market data including stock quotes, company profiles, stock screeners, and income statements."
   },
-  "servers": [
-    {
-      "url": "https://financialmodelingprep.com/api/"
-    }
-  ],
-  "openapi": "3.1.0",
   "paths": {
     "v3/quote/{symbol}": {
       "get": {
         "summary": "Full Quote",
-        "description": "A detailed quote of the stock's price and volume.",
-        "operationId": "getFullQuote",
         "parameters": [
           {
             "in": "path",
@@ -35,14 +27,14 @@
             "required": true,
             "description": "API key"
           }
-        ]
+        ],
+        "description": "A detailed quote of the stock's price and volume.",
+        "operationId": "getFullQuote"
       }
     },
     "v3/stock-screener": {
       "get": {
         "summary": "Screener (Stock)",
-        "description": "Search for stocks based on various criteria, such as market cap, price, volume, beta, sector, and country",
-        "operationId": "getStockScreener",
         "parameters": [
           {
             "in": "query",
@@ -89,68 +81,26 @@
             "required": true,
             "description": "API key"
           }
-        ]
+        ],
+        "description": "Search for stocks based on various criteria, such as market cap, price, volume, beta, sector, and country",
+        "operationId": "getStockScreener"
       }
     },
     "v3/profile/{symbol}": {
-        "get": {
-          "summary": "Company Profile",
-          "operationId": "getCompanyProfile",
-          "description": "provides key information about the company such as price, beta, market capitalization, description, headquarters, and more",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "symbol",
-              "schema": {
-                "type": "string",
-                "example": "AAPL"
-              },
-              "required": true,
-              "description": "The stock ticker symbol of the company."
-            },
-            {
-                "in": "query",
-                "name": "apikey",
-                "schema": {
-                  "type": "string"
-                },
-                "required": true,
-                "description": "API key"
-            }
-          ]
-        }
-    },
-    "v3/income-statement/{symbol}": {
-    "get": {
-        "summary": "Retrieve Income Statements",
-        "operationId": "getIncomeStatement",
-        "description": "Financial statements of a company, including balance sheet, income statement, and cash flow statement available in annual and quarterly format",
+      "get": {
+        "summary": "Company Profile",
         "parameters": [
-        {
+          {
             "in": "path",
             "name": "symbol",
             "schema": {
-            "type": "string",
-            "example": "AAPL"
+              "type": "string",
+              "example": "AAPL"
             },
             "required": true,
             "description": "The stock ticker symbol of the company."
-        },
-        {
-            "in": "query",
-            "name": "period",
-            "schema": {
-            "enum": [
-                "annual",
-                "quarterly"
-            ],
-            "type": "string",
-            "example": "annual"
-            },
-            "required": false,
-            "description": "The reporting period (e.g., annual, quarterly)."
-        },
-        {
+          },
+          {
             "in": "query",
             "name": "apikey",
             "schema": {
@@ -158,9 +108,59 @@
             },
             "required": true,
             "description": "API key"
-        }
-        ]
+          }
+        ],
+        "description": "provides key information about the company such as price, beta, market capitalization, description, headquarters, and more",
+        "operationId": "getCompanyProfile"
+      }
+    },
+    "v3/income-statement/{symbol}": {
+      "get": {
+        "summary": "Retrieve Income Statements",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "schema": {
+              "type": "string",
+              "example": "AAPL"
+            },
+            "required": true,
+            "description": "The stock ticker symbol of the company."
+          },
+          {
+            "in": "query",
+            "name": "period",
+            "schema": {
+              "enum": [
+                "annual",
+                "quarterly"
+              ],
+              "type": "string",
+              "example": "annual"
+            },
+            "required": false,
+            "description": "The reporting period (e.g., annual, quarterly)."
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "API key"
+          }
+        ],
+        "description": "Financial statements of a company, including balance sheet, income statement, and cash flow statement available in annual and quarterly format",
+        "operationId": "getIncomeStatement"
+      }
     }
+  },
+  "openapi": "3.1.0",
+  "servers": [
+    {
+      "url": "https://financialmodelingprep.com/api/"
     }
-  }
+  ]
 }
