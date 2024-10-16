@@ -89,7 +89,7 @@ export function EnterpriseAccessModal() {
             <div className="flex flex-col items-center mb-4">
               <Check weight="fill" className="w-12 h-12 text-green-500 mb-2" />
               <Title className="text-2xl font-bold text-center">
-                We'll get back to you within 24 hours
+                We&apos;ll get back to you within 24 hours
               </Title>
             </div>
             <Text className="mb-6 text-gray-600 text-center">
