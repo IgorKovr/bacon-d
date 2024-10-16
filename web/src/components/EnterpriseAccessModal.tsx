@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Trophy, Rocket, Check } from "@phosphor-icons/react";
+import { Trophy, Check } from "@phosphor-icons/react";
 import { Button, TextInput, Card, Title, Text } from "@tremor/react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/components/user/UserProvider";
@@ -55,10 +55,10 @@ export function EnterpriseAccessModal() {
                 className="w-12 h-12 text-yellow-500 mb-2"
               />
               <Title className="text-2xl font-bold text-center">
-                This Feature is Available for Enterprise Users
+                This feature is available on paid plans
               </Title>
             </div>
-            <Text className="mb-6 text-gray-600 text-center">
+            <Text className="mb-6 text-lg text-gray-600 text-center">
               Unlock enterprise-level features to boost productivity and empower
               your team. Request access now to gain full functionality.
             </Text>
@@ -74,13 +74,18 @@ export function EnterpriseAccessModal() {
               </div>
               <Button
                 size="lg"
-                className="w-full bg-gray-900 text-white hover:bg-gray-800"
+                className="w-full h-11 bg-gray-900 text-white hover:bg-gray-800 border-none"
                 type="submit"
               >
-                <span className="flex items-center justify-center gap-2">
-                  <Rocket weight="fill" className="w-5 h-5" />
-                  Request Access
-                </span>
+                Request Access 🚀
+              </Button>
+              <Button
+                size="lg"
+                className="w-full h-11 bg-gray-100 text-gray-700 hover:bg-gray-200 border-none"
+                onClick={handleClose}
+                type="button"
+              >
+                Return Home
               </Button>
             </form>
           </>
@@ -98,7 +103,7 @@ export function EnterpriseAccessModal() {
             </Text>
             <Button
               size="lg"
-              className="w-full bg-gray-900 text-white hover:bg-gray-800"
+              className="w-full bg-gray-900 text-white hover:bg-gray-800 border-none"
               onClick={handleClose}
             >
               Return to Home
