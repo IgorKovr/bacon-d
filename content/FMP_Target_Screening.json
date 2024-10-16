@@ -34,7 +34,7 @@
     },
     "v3/stock-screener": {
       "get": {
-        "summary": "Search for stocks based on various criteria, such as market cap, price, volume, beta, sector, and country",
+        "summary": "Search for stocks based on various criteria, such as market cap, sector, industry, and country",
         "parameters": [
           {
             "in": "query",
@@ -43,7 +43,8 @@
               "type": "number",
               "example": 1000000000
             },
-            "description": "Filter by market capitalization greater than a certain value."
+            "required": false,
+            "description": "Filter by market capitalization greater than a certain value"
           },
           {
             "in": "query",
@@ -52,25 +53,38 @@
               "type": "number",
               "example": 5000000000
             },
-            "description": "Filter by market capitalization less than a certain value."
+            "required": false,
+            "description": "Filter by market capitalization less than a certain value"
           },
           {
             "in": "query",
-            "name": "priceMoreThan",
+            "name": "country",
             "schema": {
-              "type": "number",
-              "example": 50
+              "type": "string",
+              "example": "US"
             },
-            "description": "Filter by price greater than a certain value."
+            "required": false,
+            "description": "Filter stocks by the industry sector in which the company operates"
           },
           {
             "in": "query",
-            "name": "priceLowerThan",
+            "name": "sector",
             "schema": {
-              "type": "number",
-              "example": 100
+              "type": "string",
+              "example": "Energy, Technology, Industrials, Financial Services, Basic Materials, Communication Services, Consumer Defensive, Healthcare, Real Estate, Utilities, Financial, Services, ..."
             },
-            "description": "Filter by price lower than a certain value."
+            "required": false,
+            "description": "Filter stocks based on the country where the company is registered or operates"
+          },
+          {
+            "in": "query",
+            "name": "industry",
+            "schema": {
+              "type": "string",
+              "example": "Autos, Banks, Banks Diversified, Software, Banks Regional, Beverages Alcoholic, Beverages Brewers, Beverages Non-Alcoholic, .."
+            },
+            "required": false,
+            "description": "Filter stocks based on the specific industry in which the company operates"
           },
           {
             "in": "query",
@@ -82,7 +96,7 @@
             "description": "API key"
           }
         ],
-        "description": "Search for stocks based on various criteria, such as market cap, price, volume, beta, sector, and country",
+        "description": "Search for stocks based on various criteria, such as market cap, sector, industry, and country",
         "operationId": "StockScreener"
       }
     },
