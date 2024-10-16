@@ -187,7 +187,7 @@ def send_eneterprise_notification_email_to_Bacon(
 ) -> None:
     msg = MIMEMultipart()
     msg["Subject"] = "We got an Enerprise Request 🚀"
-    msg["To"] = "founders@bacon.com"
+    msg["To"] = "founders@bacon.tech"
     if mail_from:
         msg["From"] = mail_from
 
