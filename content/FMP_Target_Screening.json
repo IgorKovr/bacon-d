@@ -25,7 +25,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "API key"
+            "description": "FMP API key"
           }
         ],
         "description": "A detailed quote of the stock's price and volume",
@@ -93,7 +93,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "API key"
+            "description": "FMP API key"
           }
         ],
         "description": "Search for stocks based on various criteria, such as market cap, sector, industry, and country",
@@ -121,7 +121,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "API key"
+            "description": "FMP API key"
           }
         ],
         "description": "Provides key information about the company such as price, beta, market capitalization, description, headquarters, and more",
@@ -130,7 +130,7 @@
     },
     "v3/income-statement/{symbol}": {
       "get": {
-        "summary": "Financial statements of a company, including balance sheet, income statement, and cash flow statement available in annual and quarterly format",
+        "summary": "Income statement, also known as the profit and loss statement, shows a company's revenue, expenses, and net income over a period of time, one of three core financial statements",
         "parameters": [
           {
             "in": "path",
@@ -163,10 +163,10 @@
               "type": "string"
             },
             "required": true,
-            "description": "API key"
+            "description": "FMP API key"
           }
         ],
-        "description": "Financial statements of a company, including balance sheet, income statement, and cash flow statement available in annual and quarterly format",
+        "description": "Income statement, also known as the profit and loss statement, shows a company's revenue, expenses, and net income over a period of time. Part of financial statement",
         "operationId": "IncomeStatement"
       }
     },
@@ -190,7 +190,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "API key"
+            "description": "FMP API key"
           }
         ],
         "description": "Get the discounted cash flow (DCF) valuation for a company, a method to estimate the value of an investment based on its expected future cash flows",
@@ -199,7 +199,7 @@
     },
     "v3/balance-sheet-statement/{symbol}": {
       "get": {
-        "summary": "Balance sheet of a company. Displays a company’s total assets, liabilities, and shareholder equity over a specific timeframe",
+        "summary": "Balance sheet. Shows a company's assets, liabilities, and equity at a specific point in time. Part of financial statement",
         "parameters": [
           {
             "in": "path",
@@ -227,16 +227,68 @@
               "type": "string"
             },
             "required": true,
-            "description": "API key"
+            "description": "FMP API key"
           }
         ],
-        "description": "Balance sheet of a company. Displays a company’s total assets, liabilities, and shareholder equity over a specific timeframe",
+        "description": "Balance sheet. Shows a company's assets, liabilities, and equity at a specific point in time. Part of financial statement",
         "operationId": "BalanceSheetStatements"
+      }
+    },
+    "/v3/cash-flow-statement/{symbol}": {
+      "get": {
+        "summary": "Retrieve cash flow statement (Cash Flow)",
+        "operationId": "CashFlowStatement",
+        "description": "Cash flow statements for the specified company, providing details about the company’s cash inflows and outflows for different periods",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "schema": {
+              "type": "string",
+              "example": "AAPL"
+            },
+            "required": true,
+            "description": "The stock ticker symbol of the company."
+          },
+          {
+            "in": "query",
+            "name": "period",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "annual",
+                "quarterly"
+              ],
+              "example": "annual"
+            },
+            "required": false,
+            "description": "The reporting period (default is quarterly)."
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "example": 20
+            },
+            "required": false,
+            "description": "The number of records to retrieve (default is 20)."
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "FMP API key"
+          }
+        ]
       }
     },
     "v3/earning_call_transcript/{symbol}": {
       "get": {
-        "summary": "Get the full transcript of an earnings call for a specific company in text format.",
+        "summary": "Full transcript of an earnings call for a specific company",
         "parameters": [
           {
             "in": "path",
@@ -273,16 +325,16 @@
               "type": "string"
             },
             "required": true,
-            "description": "API key"
+            "description": "FMP API key"
           }
         ],
-        "description": "Get the full transcript of an earnings call for a specific company in text format. This endpoint can be used to learn more about a company's financial performance, future plans, and overall strategy.",
+        "description": "Full transcript of an earnings call for a specific company",
         "operationId": "EarningsCallTranscript"
       }
     },
     "v4/batch_earning_call_transcript/{symbol}": {
       "get": {
-        "summary": "Batch export of transcripts for specific year.",
+        "summary": "Provides access to the full transcript of an earnings call for a specific company for a specific year",
         "parameters": [
           {
             "in": "path",
@@ -310,10 +362,10 @@
               "type": "string"
             },
             "required": true,
-            "description": "API key"
+            "description": "FMP API key"
           }
         ],
-        "description": "Batch export of transcripts for a specific year.",
+        "description": "Provides access to the full transcript of an earnings call for a specific company for a specific year",
         "operationId": "BatchExportEarningsCallTranscripts"
       }
     },
@@ -362,7 +414,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "API key"
+            "description": "FMP API key"
           }
         ],
         "description": "Provides analyst estimates for a company's future earnings and revenue",
