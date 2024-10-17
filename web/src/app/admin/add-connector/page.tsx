@@ -97,7 +97,6 @@ export default function Page() {
 
   return (
     <div className="mx-auto container">
-      <EnterpriseAccessModal />
       <AdminPageTitle
         icon={<ConnectorIcon size={32} />}
         title="Add Connector"
