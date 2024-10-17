@@ -523,7 +523,7 @@ export function ChatInputBar({
               suppressContentEditableWarning={true}
             />
             <div className="flex items-center space-x-3 mr-12 px-4 pb-2">
-              <Popup
+              {/* <Popup
                 removePadding
                 content={(close) => (
                   <AssistantsTab
@@ -549,8 +549,8 @@ export function ChatInputBar({
                   }
                   Icon={AssistantsIconSkeleton as IconType}
                 />
-              </Popup>
-              <Popup
+              </Popup> */}
+              {/* <Popup
                 tab
                 content={(close, ref) => (
                   <LlmTab
@@ -589,7 +589,7 @@ export function ChatInputBar({
                   }
                   Icon={CpuIconSkeleton}
                 />
-              </Popup>
+              </Popup> */}
 
               <ChatInputOption
                 flexPriority="stiff"
@@ -617,7 +617,11 @@ export function ChatInputBar({
               chatState == "toolBuilding" ||
               chatState == "loading" ? (
                 <button
-                  className={`cursor-pointer ${chatState != "streaming" ? "bg-background-400" : "bg-background-800"}  h-[28px] w-[28px] rounded-full`}
+                  className={`cursor-pointer ${
+                    chatState != "streaming"
+                      ? "bg-background-400"
+                      : "bg-background-800"
+                  }  h-[28px] w-[28px] rounded-full`}
                   onClick={stopGenerating}
                   disabled={chatState != "streaming"}
                 >
@@ -639,7 +643,11 @@ export function ChatInputBar({
                 >
                   <SendIcon
                     size={28}
-                    className={`text-emphasis text-white p-1 rounded-full  ${chatState == "input" && message ? "bg-submit-background" : "bg-disabled-submit-background"} `}
+                    className={`text-emphasis text-white p-1 rounded-full  ${
+                      chatState == "input" && message
+                        ? "bg-submit-background"
+                        : "bg-disabled-submit-background"
+                    } `}
                   />
                 </button>
               )}
