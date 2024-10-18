@@ -61,10 +61,11 @@
             "name": "country",
             "schema": {
               "type": "string",
-              "example": "US"
+              "example": "US",
+              "pattern": "^[A-Z]{2}$"
             },
             "required": false,
-            "description": "Filter stocks by the industry sector in which the company operates"
+            "description": "Filter stocks by the country where the company operates. Use 2-letter ISO country codes, e.g. US, UK, MX, BR, DE, ..."
           },
           {
             "in": "query",
