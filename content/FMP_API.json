@@ -1,0 +1,432 @@
+{
+  "info": {
+    "title": "FMP [tested]",
+    "description": "This API allows for fetching various financial market data including stock quotes, company profiles, stock screeners, and income statements."
+  },
+  "paths": {
+    "v3/quote/{symbol}": {
+      "get": {
+        "summary": "A detailed quote of the stock's price and volume",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "schema": {
+              "type": "string",
+              "example": "AAPL"
+            },
+            "required": true,
+            "description": "The stock ticker symbol of the company"
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "FMP API key"
+          }
+        ],
+        "description": "A detailed quote of the stock's price and volume",
+        "operationId": "FullQuote"
+      }
+    },
+    "v3/stock-screener": {
+      "get": {
+        "summary": "Search for stocks based on various criteria, such as market cap, sector, industry, and country",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "marketCapMoreThan",
+            "schema": {
+              "type": "number",
+              "example": 1000000000
+            },
+            "required": false,
+            "description": "Filter by market capitalization greater than a certain value"
+          },
+          {
+            "in": "query",
+            "name": "marketCapLowerThan",
+            "schema": {
+              "type": "number",
+              "example": 5000000000
+            },
+            "required": false,
+            "description": "Filter by market capitalization less than a certain value"
+          },
+          {
+            "in": "query",
+            "name": "country",
+            "schema": {
+              "type": "string",
+              "example": "US",
+              "pattern": "^[A-Z]{2}$"
+            },
+            "required": false,
+            "description": "Filter stocks by the country where the company operates. Use 2-letter ISO country codes, e.g. US, UK, MX, BR, DE, ..."
+          },
+          {
+            "in": "query",
+            "name": "sector",
+            "schema": {
+              "type": "string",
+              "example": "Energy, Technology, Industrials, Financial Services, Basic Materials, Communication Services, Consumer Defensive, Healthcare, Real Estate, Utilities, Financial, Services, ..."
+            },
+            "required": false,
+            "description": "Filter stocks based on the country where the company is registered or operates"
+          },
+          {
+            "in": "query",
+            "name": "industry",
+            "schema": {
+              "type": "string",
+              "example": "Autos, Banks, Banks Diversified, Software, Banks Regional, Beverages Alcoholic, Beverages Brewers, Beverages Non-Alcoholic, .."
+            },
+            "required": false,
+            "description": "Filter stocks based on the specific industry in which the company operates"
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "FMP API key"
+          }
+        ],
+        "description": "Search for stocks based on various criteria, such as market cap, sector, industry, and country",
+        "operationId": "StockScreener"
+      }
+    },
+    "v3/profile/{symbol}": {
+      "get": {
+        "summary": "Provides key information about the company such as price, beta, market capitalization, description, headquarters, and more",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "schema": {
+              "type": "string",
+              "example": "AAPL"
+            },
+            "required": true,
+            "description": "The stock ticker symbol of the company."
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "FMP API key"
+          }
+        ],
+        "description": "Provides key information about the company such as price, beta, market capitalization, description, headquarters, and more",
+        "operationId": "CompanyProfile"
+      }
+    },
+    "v3/income-statement/{symbol}": {
+      "get": {
+        "summary": "Income statement, also known as the profit and loss statement, shows a company's revenue, expenses, and net income over a period of time, one of three core financial statements",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "schema": {
+              "type": "string",
+              "example": "AAPL"
+            },
+            "required": true,
+            "description": "The stock ticker symbol of the company."
+          },
+          {
+            "in": "query",
+            "name": "period",
+            "schema": {
+              "enum": [
+                "annual",
+                "quarterly"
+              ],
+              "type": "string",
+              "example": "annual"
+            },
+            "required": false,
+            "description": "The reporting period (e.g., annual, quarterly)."
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "FMP API key"
+          }
+        ],
+        "description": "Income statement, also known as the profit and loss statement, shows a company's revenue, expenses, and net income over a period of time. Part of financial statement",
+        "operationId": "IncomeStatement"
+      }
+    },
+    "v3/discounted-cash-flow/{symbol}": {
+      "get": {
+        "summary": "Get the discounted cash flow (DCF) valuation for a company, a method to estimate the value of an investment based on its expected future cash flows",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The stock ticker symbol of the company"
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "FMP API key"
+          }
+        ],
+        "description": "Get the discounted cash flow (DCF) valuation for a company, a method to estimate the value of an investment based on its expected future cash flows",
+        "operationId": "DiscountedCashFlow"
+      }
+    },
+    "v3/balance-sheet-statement/{symbol}": {
+      "get": {
+        "summary": "Balance sheet. Shows a company's assets, liabilities, and equity at a specific point in time. Part of financial statement",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "schema": {
+              "type": "string",
+              "example": "AAPL"
+            },
+            "required": true,
+            "description": "The stock ticker symbol of the company"
+          },
+          {
+            "in": "query",
+            "name": "period",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "The reporting period (e.g., annual, quarterly)"
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "FMP API key"
+          }
+        ],
+        "description": "Balance sheet. Shows a company's assets, liabilities, and equity at a specific point in time. Part of financial statement",
+        "operationId": "BalanceSheetStatements"
+      }
+    },
+    "/v3/cash-flow-statement/{symbol}": {
+      "get": {
+        "summary": "Retrieve cash flow statement (Cash Flow)",
+        "operationId": "CashFlowStatement",
+        "description": "Cash flow statements for the specified company, providing details about the company’s cash inflows and outflows for different periods",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "schema": {
+              "type": "string",
+              "example": "AAPL"
+            },
+            "required": true,
+            "description": "The stock ticker symbol of the company."
+          },
+          {
+            "in": "query",
+            "name": "period",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "annual",
+                "quarterly"
+              ],
+              "example": "annual"
+            },
+            "required": false,
+            "description": "The reporting period (default is quarterly)."
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "example": 20
+            },
+            "required": false,
+            "description": "The number of records to retrieve (default is 20)."
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "FMP API key"
+          }
+        ]
+      }
+    },
+    "v3/earning_call_transcript/{symbol}": {
+      "get": {
+        "summary": "Full transcript of an earnings call for a specific company",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "schema": {
+              "type": "string",
+              "example": "AAPL"
+            },
+            "required": true,
+            "description": "The stock ticker symbol of the company (e.g., AAPL)."
+          },
+          {
+            "in": "query",
+            "name": "year",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The year of the earnings call transcript."
+          },
+          {
+            "in": "query",
+            "name": "quarter",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The quarter of the earnings call transcript."
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "FMP API key"
+          }
+        ],
+        "description": "Full transcript of an earnings call for a specific company",
+        "operationId": "EarningsCallTranscript"
+      }
+    },
+    "v4/batch_earning_call_transcript/{symbol}": {
+      "get": {
+        "summary": "Provides access to the full transcript of an earnings call for a specific company for a specific year",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "schema": {
+              "type": "string",
+              "example": "AAPL"
+            },
+            "required": true,
+            "description": "The stock ticker symbol of the company (e.g., AAPL)."
+          },
+          {
+            "in": "query",
+            "name": "year",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The year of the earnings call transcripts."
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "FMP API key"
+          }
+        ],
+        "description": "Provides access to the full transcript of an earnings call for a specific company for a specific year",
+        "operationId": "BatchExportEarningsCallTranscripts"
+      }
+    },
+    "v3/analyst-estimates/{symbol}": {
+      "get": {
+        "summary": "Provides analyst estimates for a company's future earnings and revenue",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "schema": {
+              "type": "string",
+              "example": "AAPL"
+            },
+            "required": true,
+            "description": "Stock symbol of the company"
+          },
+          {
+            "in": "query",
+            "name": "period",
+            "schema": {
+              "enum": [
+                "annual",
+                "quarter"
+              ],
+              "type": "string",
+              "example": "annual"
+            },
+            "required": false,
+            "description": "Period for the estimates"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "example": 30
+            },
+            "required": false,
+            "description": "Limit the number of results"
+          },
+          {
+            "in": "query",
+            "name": "apikey",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "FMP API key"
+          }
+        ],
+        "description": "Provides analyst estimates for a company's future earnings and revenue",
+        "operationId": "AnalystEstimates"
+      }
+    }
+  },
+  "openapi": "3.1.0",
+  "servers": [
+    {
+      "url": "https://financialmodelingprep.com/api/"
+    }
+  ]
+}

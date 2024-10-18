@@ -1,4 +1,5 @@
 "use client";
+import { EnterpriseAccessModal } from "@/components/EnterpriseAccessModal";
 import { SourceIcon } from "@/components/SourceIcon";
 import { AdminPageTitle } from "@/components/admin/Title";
 import { ConnectorIcon } from "@/components/icons/icons";

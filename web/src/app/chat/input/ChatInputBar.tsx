@@ -523,74 +523,7 @@ export function ChatInputBar({
               suppressContentEditableWarning={true}
             />
             <div className="flex items-center space-x-3 mr-12 px-4 pb-2">
-              <Popup
-                removePadding
-                content={(close) => (
-                  <AssistantsTab
-                    availableAssistants={assistantOptions}
-                    llmProviders={llmProviders}
-                    selectedAssistant={selectedAssistant}
-                    onSelect={(assistant) => {
-                      setSelectedAssistant(assistant);
-                      close();
-                    }}
-                    refreshUser={refreshUser}
-                  />
-                )}
-                flexPriority="shrink"
-                position="top"
-                mobilePosition="top-right"
-              >
-                <ChatInputOption
-                  toggle
-                  flexPriority="shrink"
-                  name={
-                    selectedAssistant ? selectedAssistant.name : "Assistants"
-                  }
-                  Icon={AssistantsIconSkeleton as IconType}
-                />
-              </Popup>
-              <Popup
-                tab
-                content={(close, ref) => (
-                  <LlmTab
-                    currentAssistant={alternativeAssistant || selectedAssistant}
-                    openModelSettings={openModelSettings}
-                    currentLlm={
-                      llmOverrideManager.llmOverride.modelName ||
-                      (selectedAssistant
-                        ? selectedAssistant.llm_model_version_override ||
-                          llmOverrideManager.globalDefault.modelName ||
-                          llmName
-                        : llmName)
-                    }
-                    close={close}
-                    ref={ref}
-                    llmOverrideManager={llmOverrideManager}
-                    chatSessionId={chatSessionId}
-                  />
-                )}
-                position="top"
-              >
-                <ChatInputOption
-                  flexPriority="second"
-                  toggle
-                  name={
-                    settings?.isMobile
-                      ? undefined
-                      : getDisplayNameForModel(
-                          llmOverrideManager.llmOverride.modelName ||
-                            (selectedAssistant
-                              ? selectedAssistant.llm_model_version_override ||
-                                llmOverrideManager.globalDefault.modelName ||
-                                llmName
-                              : llmName)
-                        )
-                  }
-                  Icon={CpuIconSkeleton}
-                />
-              </Popup>
-
+              {/* LLM Selection removed for demo users */}
               <ChatInputOption
                 flexPriority="stiff"
                 name="File"
@@ -617,7 +550,11 @@ export function ChatInputBar({
               chatState == "toolBuilding" ||
               chatState == "loading" ? (
                 <button
-                  className={`cursor-pointer ${chatState != "streaming" ? "bg-background-400" : "bg-background-800"}  h-[28px] w-[28px] rounded-full`}
+                  className={`cursor-pointer ${
+                    chatState != "streaming"
+                      ? "bg-background-400"
+                      : "bg-background-800"
+                  }  h-[28px] w-[28px] rounded-full`}
                   onClick={stopGenerating}
                   disabled={chatState != "streaming"}
                 >
@@ -639,7 +576,11 @@ export function ChatInputBar({
                 >
                   <SendIcon
                     size={28}
-                    className={`text-emphasis text-white p-1 rounded-full  ${chatState == "input" && message ? "bg-submit-background" : "bg-disabled-submit-background"} `}
+                    className={`text-emphasis text-white p-1 rounded-full  ${
+                      chatState == "input" && message
+                        ? "bg-submit-background"
+                        : "bg-disabled-submit-background"
+                    } `}
                   />
                 </button>
               )}

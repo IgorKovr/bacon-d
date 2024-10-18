@@ -151,25 +151,7 @@ export const HistorySidebar = forwardRef<HTMLDivElement, HistorySidebarProps>(
                 <FiFolderPlus className="my-auto" />
                 <p className="my-auto flex items-center text-sm">New Folder</p>
               </button>
-
-              <Link
-                href="/assistants/mine"
-                className="w-full p-2 bg-white border-border border rounded items-center hover:bg-background-200 cursor-pointer transition-all duration-150 flex gap-x-2"
-              >
-                <AssistantsIconSkeleton className="h-4 w-4 my-auto" />
-                <p className="my-auto flex items-center text-sm">
-                  Manage Assistants
-                </p>
-              </Link>
-              <Link
-                href="/prompts"
-                className="w-full p-2 bg-white border-border border rounded items-center hover:bg-background-200 cursor-pointer transition-all duration-150 flex gap-x-2"
-              >
-                <ClosedBookIcon className="h-4 w-4 my-auto" />
-                <p className="my-auto flex items-center text-sm">
-                  Manage Prompts
-                </p>
-              </Link>
+              {/* Manage prompts and Manage Assistant buttons are hiddem for demo users */}
             </div>
           )}
           <div className="border-b border-border pb-4 mx-3" />

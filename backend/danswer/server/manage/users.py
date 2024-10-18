@@ -31,6 +31,8 @@ from danswer.auth.users import current_admin_user
 from danswer.auth.users import current_curator_or_admin_user
 from danswer.auth.users import current_user
 from danswer.auth.users import optional_user
+from danswer.auth.users import send_eneterprise_notification_email_to_Bacon
+from danswer.auth.users import send_eneterprise_request_confirmation_email
 from danswer.configs.app_configs import AUTH_TYPE
 from danswer.configs.app_configs import ENABLE_EMAIL_INVITES
 from danswer.configs.app_configs import MULTI_TENANT
@@ -496,6 +498,29 @@ def verify_user_logged_in(
     )
 
     return user_info
+
+
+class EnterpriseSignupRequest(BaseModel):
+    email: str
+
+
+@router.post("/enterprise_signup")
+async def enterprise_signup(
+    request: EnterpriseSignupRequest, _: User = Depends(current_user)
+):
+    try:
+        # Log the email
+        logger.info(f"Received enterprise signup request for email: {request.email}")
+        send_eneterprise_notification_email_to_Bacon(user_email=request.email)
+        send_eneterprise_request_confirmation_email(user_email=request.email)
+        return {"message": "Signup request received"}
+    except Exception as e:
+        logger.error(f"Error processing signup request: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Internal Server Error",
+        )
+        raise RuntimeError("This should never happen")
 
 
 """APIs to adjust user preferences"""
