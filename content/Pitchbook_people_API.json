@@ -1,0 +1,296 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PitchBook API - [People]",
+    "description": "API for searching people and retrieving detailed information about individuals.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.pitchbook.com"
+    }
+  ],
+  "paths": {
+    "/people/search": {
+      "get": {
+        "summary": "People Search",
+        "description": "Retrieves people matching the specified search criteria.",
+        "operationId": "searchPeople",
+        "parameters": [
+          {
+            "name": "firmNames",
+            "in": "query",
+            "description": "Comma-separated list of company names, IDs, websites, or tickers.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "personNames",
+            "in": "query",
+            "description": "Comma-separated list of person names or IDs.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "biography",
+            "in": "query",
+            "description": "Search for people by words and phrases in their biography.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "university",
+            "in": "query",
+            "description": "Find people by their graduating institution.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "positionLevel",
+            "in": "query",
+            "description": "Find people by their position level code.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "positionTitle",
+            "in": "query",
+            "description": "Find people by the keywords related to their position titles.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "primaryPositionOnly",
+            "in": "query",
+            "description": "Set this parameter to True to only search for primary positions.",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "Search for people by city of their entities.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "description": "Comma-separated list of country codes.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stateProvince",
+            "in": "query",
+            "description": "Search for people by state or province of their entities.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "postCode",
+            "in": "query",
+            "description": "Search for people by postal codes of their entities.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "firstName",
+            "in": "query",
+            "description": "Find people by first name.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lastName",
+            "in": "query",
+            "description": "Find people by last name.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Find people by email.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domain",
+            "in": "query",
+            "description": "Find people by their domain.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "description": "Number of results per page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "example": 25
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to retrieve.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/people/{pbid}/bio": {
+      "get": {
+        "summary": "People Bio",
+        "description": "Retrieves key data points about a specific person.",
+        "operationId": "getPersonBio",
+        "parameters": [
+          {
+            "name": "pbid",
+            "in": "path",
+            "description": "The unique ID of the person.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/people/{pbid}/contact": {
+      "get": {
+        "summary": "People Contact",
+        "description": "Retrieves contact information of the specific person.",
+        "operationId": "getPersonContact",
+        "parameters": [
+          {
+            "name": "pbid",
+            "in": "path",
+            "description": "The unique ID of the person.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/people/{pbid}/education-work": {
+      "get": {
+        "summary": "People Education/Work",
+        "description": "Retrieves company, deal, fund, and advisory roles of the specific person.",
+        "operationId": "getPersonEducationWork",
+        "parameters": [
+          {
+            "name": "pbid",
+            "in": "path",
+            "description": "The unique ID of the person.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/people/{pbid}/updates": {
+      "get": {
+        "summary": "People Profile Updates",
+        "description": "Retrieves changes for the specific person for up to the last 90 days.",
+        "operationId": "getPersonProfileUpdates",
+        "parameters": [
+          {
+            "name": "pbid",
+            "in": "path",
+            "description": "The unique ID of the person.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sinceDate",
+            "in": "query",
+            "description": "Filter updates since a specific date. Use operators (>, <, ^). Format: YYYY-MM-DD.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "trailingRange",
+            "in": "query",
+            "description": "Retrieve updates from the last N days.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Person": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "company": {
+            "type": "string"
+          },
+          "positionTitle": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
