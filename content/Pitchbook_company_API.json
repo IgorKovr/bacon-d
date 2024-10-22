@@ -1,0 +1,304 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PitchBook API [Companies]",
+    "description": "API for retrieving company data based on specific criteria.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.pitchbook.com"
+    }
+  ],
+  "paths": {
+    "/companies/search": {
+      "get": {
+        "summary": "Company Search",
+        "description": "Retrieves companies matching the specified search criteria.",
+        "operationId": "searchCompanies",
+        "parameters": [
+          {
+            "name": "companyNames",
+            "in": "query",
+            "description": "Comma-separated list of company names, IDs, websites, or tickers.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ownershipStatus",
+            "in": "query",
+            "description": "Filter companies by ownership status. e.g. PVTB = private with backing | ACQ = Acquired/Merged | PVTNB Privately Held (no backing)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PVTB",
+                "ACQ",
+                "PVTNB"
+              ]
+            }
+          },
+          {
+            "name": "backingStatus",
+            "in": "query",
+            "description": "Filter companies by backing status. e.g. PEB = pe-backed | VCB = vc-backed | ACCIB: accelerator/incubator-backed",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "VCB",
+                "PEB",
+                "ACCIB"
+              ]
+            }
+          },
+          {
+            "name": "businessStatus",
+            "in": "query",
+            "description": "Filter companies by business status. .e.g STAR = startup",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "STAR"
+              ]
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "Filter companies by city. (e.g. Berlin)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "description": "Comma-separated list of country codes (e.g., USA, GBR, DEU, IND).",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Z]{3}(,[A-Z]{3})*$"
+            }
+          },
+          {
+            "name": "postCode",
+            "in": "query",
+            "description": "Filter companies by postal code. (e.g. 10245)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateFounded",
+            "in": "query",
+            "description": "Filter companies by date founded using operators (>, <, ^). Format: >YYYY-MM-DD. e.g. >2020-01-01",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^[><]{1}[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+            }
+          },
+          {
+            "name": "dealType",
+            "in": "query",
+            "description": "Filter companies by deal type.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "EVC",
+                "LVC",
+                "BYSTG",
+                "LBO"
+              ]
+            }
+          },
+          {
+            "name": "dealDate",
+            "in": "query",
+            "description": "Filter companies by deal date using operators (>, <, ^). Format: >YYYY-MM-DD. e.g. >2020-01-01",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^[><]{1}[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+              "example": ">2020-01-01"
+            }
+          },
+          {
+            "name": "totalRaised",
+            "in": "query",
+            "description": "Find companies by total amount raised IN MILLIONS. Use the >, <, or ^ operators for comparison or range. (e.g. '>2' for more than 2 million)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^(>|<|\\^)?\\d+(\\^\\d+)?$",
+              "example": ">2"
+            }
+          }
+        ]
+      }
+    },
+    "/companies/{companyId}/deals": {
+      "get": {
+        "summary": "Get Company Deals",
+        "description": "Retrieves all deals of the specific company.",
+        "operationId": "getCompanyDeals",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The ID of the company to retrieve deals for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/companies/{companyId}/bio": {
+      "get": {
+        "summary": "Get Company Details",
+        "description": "Retrieve detailed information for a specific company.",
+        "operationId": "getCompanyDetails",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The ID of the company to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/companies/{companyId}/investors": {
+      "get": {
+        "summary": "Get Company Investors",
+        "description": "Retrieve the list of investors for a specific company.",
+        "operationId": "getCompanyInvestors",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The ID of the company to retrieve investors for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/companies/{companyId}/most-recent-financials": {
+      "get": {
+        "summary": "Get Company Financials",
+        "description": "Retrieves financial data for the most recent available fiscal year of the specific company. Endpoint is only available for private companies.",
+        "operationId": "getCompanyFinancialsRecent",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The ID of the company to retrieve financials for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/companies/{companyId}/vc-exit-predictions": {
+      "get": {
+        "summary": "Retrieves Predicionts for VC Exit",
+        "description": "Retrieves Predicionts for VC Exit",
+        "operationId": "getCompanyVCExitPrediction",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The ID of the company.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/companies/{companyId}/social-analytics": {
+      "get": {
+        "summary": "Retrieves social media and web signals data points of the company",
+        "description": "Retrieves social media and web signals data points of the company",
+        "operationId": "getCompanySocialAndWebSignals",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The ID of the company.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/companies/{companyId}/similar-companies": {
+      "get": {
+        "summary": "Retrieves top 10 similar companies/competitors of the company",
+        "description": "Retrieves top 10 similar companies/competitors of the company",
+        "operationId": "getSimilarcompanies",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The ID of the company.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Company": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

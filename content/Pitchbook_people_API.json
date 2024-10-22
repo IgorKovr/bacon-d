@@ -1,0 +1,228 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PitchBook API",
+    "description": "API for searching deals and retrieving detailed information on specific deals.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.pitchbook.com"
+    }
+  ],
+  "paths": {
+    "/deals/search": {
+      "get": {
+        "summary": "Deal Search",
+        "description": "Retrieves deals matching the specified search criteria.",
+        "operationId": "searchDeals",
+        "parameters": [
+          {
+            "name": "companyNames",
+            "in": "query",
+            "description": "Comma-separated list of company names, IDs, websites, or tickers.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ownershipStatus",
+            "in": "query",
+            "description": "Filter deals by ownership status of the companies involved.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "backingStatus",
+            "in": "query",
+            "description": "Filter deals by backing status of the companies involved.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dealType",
+            "in": "query",
+            "description": "Find specific deal types.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "evc",
+                "lvc",
+                "LBO",
+                "IPO"
+              ]
+            }
+          },
+          {
+            "name": "dealDate",
+            "in": "query",
+            "description": "Find deals within a specific date range. Use operators (>, <, ^). Format: YYYY-MM-DD.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "dealSize",
+            "in": "query",
+            "description": "Find deals of a certain size. Use operators (>, <, ^) in millions.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "investorNames",
+            "in": "query",
+            "description": "Comma-separated list of investor names, IDs, websites, or tickers.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "Filter deals by the city of the companies involved.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "description": "Comma-separated list of country codes (e.g., USA, GBR, DEU).",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "description": "Number of results per page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "example": 25
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to retrieve.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/deals/{pbid}/detailed": {
+      "get": {
+        "summary": "Deal Detailed",
+        "description": "Retrieves extended description of a specific deal.",
+        "operationId": "getDealDetails",
+        "parameters": [
+          {
+            "name": "pbid",
+            "in": "path",
+            "description": "The unique ID of the deal.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/deals/{pbid}/investors/exiters": {
+      "get": {
+        "summary": "Deal Investors/Exiters",
+        "description": "Retrieves investors, exiters, and sellers within the specific deal.",
+        "operationId": "getDealInvestorsExiters",
+        "parameters": [
+          {
+            "name": "pbid",
+            "in": "path",
+            "description": "The unique ID of the deal.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/deals/{pbid}/valuation": {
+      "get": {
+        "summary": "Deal Valuation",
+        "description": "Retrieves valuation data within the specific deal.",
+        "operationId": "getDealValuation",
+        "parameters": [
+          {
+            "name": "pbid",
+            "in": "path",
+            "description": "The unique ID of the deal.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/deals/{pbid}/cap-table-history": {
+      "get": {
+        "summary": "Deal Cap Table History",
+        "description": "Retrieves stock price values within the specific deal and prior to it.",
+        "operationId": "getDealCapTableHistory",
+        "parameters": [
+          {
+            "name": "pbid",
+            "in": "path",
+            "description": "The unique ID of the deal.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Deal": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "dealType": {
+            "type": "string"
+          },
+          "dealSize": {
+            "type": "number"
+          },
+          "dealDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    }
+  }
+}
