@@ -1,0 +1,249 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "PitchBook API",
+        "description": "Retrieve investor data based on specific search criteria.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.pitchbook.com"
+        }
+    ],
+    "paths": {
+        "/investors/search": {
+            "get": {
+                "summary": "Investor Search",
+                "description": "Retrieves investors matching the specified criteria.",
+                "operationId": "searchInvestors",
+                "parameters": [
+                    {
+                        "name": "investorNames",
+                        "in": "query",
+                        "description": "Comma-separated list of investor names, IDs, websites, or tickers.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "investorType",
+                        "in": "query",
+                        "description": "Investor type code (e.g., LP_BI, LP_E).",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "LP_BI,LP_E"
+                        }
+                    },
+                    {
+                        "name": "industryPreferences",
+                        "in": "query",
+                        "description": "Industry preference code. Use '20' for Leisure, Entertainment, Food, and related categories.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "20",
+                            "example": "20"
+                        }
+                    },
+                    {
+                        "name": "verticalsPreferences",
+                        "in": "query",
+                        "description": "Filter investors by their vertical preferences. Accepts multiple vertical codes as comma-separated values. Examples: 'AUDTCH' for Audio Technology, 'FOODSRV' for Food Services, 'ENTRTMNT' for Entertainment.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "AUDTCH,FOODSRV,ENTRTMNT"
+                        }
+                    },
+                    {
+                        "name": "aum",
+                        "in": "query",
+                        "description": "Assets under management in millions. Use '>', '<', or '^' for comparison or range.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^(>|<)?\\d+(\\^\\d+)?$",
+                            "example": "1^1000"
+                        }
+                    },
+                    {
+                        "name": "dryPowder",
+                        "in": "query",
+                        "description": "Dry powder in millions. Use '>', '<', or '^' for comparison or range.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^(>|<)?\\d+(\\^\\d+)?$",
+                            "example": ">500"
+                        }
+                    },
+                    {
+                        "name": "city",
+                        "in": "query",
+                        "description": "Comma-separated list of cities (e.g., 'Seattle,San Francisco').",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "Seattle"
+                        }
+                    },
+                    {
+                        "name": "stateProvince",
+                        "in": "query",
+                        "description": "State or province of the investor.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "WA"
+                        }
+                    },
+                    {
+                        "name": "country",
+                        "in": "query",
+                        "description": "Country code of the investor (e.g., 'USA').",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "USA"
+                        }
+                    },
+                    {
+                        "name": "postCode",
+                        "in": "query",
+                        "description": "Postal code of the investor's location.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "98125"
+                        }
+                    },
+                    {
+                        "name": "locationType",
+                        "in": "query",
+                        "description": "Specifies HQ_ONLY, NON_HQ_ONLY, or ANY for office location.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "HQ_ONLY",
+                                "NON_HQ_ONLY",
+                                "ANY"
+                            ],
+                            "example": "HQ_ONLY"
+                        }
+                    },
+                    {
+                        "name": "dealDate",
+                        "in": "query",
+                        "description": "Deals within a certain date range. Use '>' or '<' with YYYY-MM-DD format.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^(>|<)\\d{4}-\\d{2}-\\d{2}$",
+                            "example": ">2021-01-01"
+                        }
+                    },
+                    {
+                        "name": "dealSize",
+                        "in": "query",
+                        "description": "Deal size in millions. Use '>', '<', or '^' for comparison or range.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^(>|<)?\\d+(\\^\\d+)?$",
+                            "example": "10^1000"
+                        }
+                    },
+                    {
+                        "name": "includeDealsWithoutDealSize",
+                        "in": "query",
+                        "description": "Include investors with unknown deal sizes when 'dealSize' is applied (default is false).",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "example": true
+                        }
+                    },
+                    {
+                        "name": "excludeDealsWithoutDealSize",
+                        "in": "query",
+                        "description": "Exclude investors with unknown deal sizes when 'dealSize' is not applied (default is false).",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "example": false
+                        }
+                    },
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "Number of results per page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "const": 250,
+                            "example": 250
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "API Key for authorization in the format PB-Token {API_KEY}.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/investors/{pbId}/bio": {
+            "get": {
+                "summary": "Investor Bio",
+                "description": "Retrieve key data points about a specific investor.",
+                "operationId": "getInvestorBio",
+                "parameters": [
+                    {
+                        "name": "pbId",
+                        "in": "path",
+                        "description": "The unique ID of the investor.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "API Key for authorization in the format PB-Token {API_KEY}.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Investor": {
+                "type": "object",
+                "properties": {
+                    "investorId": {
+                        "type": "string"
+                    },
+                    "investorName": {
+                        "type": "string"
+                    },
+                    "website": {
+                        "type": "string",
+                        "format": "uri"
+                    }
+                }
+            }
+        }
+    }
+}

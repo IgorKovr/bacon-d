@@ -1,0 +1,278 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "PitchBook API [Funds]",
+        "description": "Retrieve funds based on specified search criteria, including investors associated with each fund.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.pitchbook.com"
+        }
+    ],
+    "paths": {
+        "/funds/search": {
+            "get": {
+                "summary": "Fund Search",
+                "description": "Retrieves funds along with the investors associated with the fund.",
+                "operationId": "searchFunds",
+                "parameters": [
+                    {
+                        "name": "fundNames",
+                        "in": "query",
+                        "description": "Comma-separated list of fund names or IDs.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "investorNames",
+                        "in": "query",
+                        "description": "Comma-separated list of investor names, IDs, websites, or tickers.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fundType",
+                        "in": "query",
+                        "description": "Fund type code (e.g., VC, PE).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "dryPowder",
+                        "in": "query",
+                        "description": "Specify the dry powder in a range format (in millions). Only range format 'X^Y' is accepted, e.g., '1^50' for a range between 1 and 50 million.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^\\d+\\^\\d+$",
+                            "example": "1^50"
+                        }
+                    },
+                    {
+                        "name": "fundSize",
+                        "in": "query",
+                        "description": "Specify the fund size in a range format (in millions). Only range format 'X^Y' is accepted, e.g., '1^5000'.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^\\d+\\^\\d+$",
+                            "example": "1^5000"
+                        }
+                    },
+                    {
+                        "name": "city",
+                        "in": "query",
+                        "description": "City of the investors associated with the fund.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "Seattle"
+                        }
+                    },
+                    {
+                        "name": "stateProvince",
+                        "in": "query",
+                        "description": "State or province of the investors associated with the fund.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "WA"
+                        }
+                    },
+                    {
+                        "name": "country",
+                        "in": "query",
+                        "description": "Country code of the investors associated with the fund (e.g., 'USA').",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "USA"
+                        }
+                    },
+                    {
+                        "name": "postCode",
+                        "in": "query",
+                        "description": "Postal code of the investors associated with the fund.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "98125"
+                        }
+                    },
+                    {
+                        "name": "locationType",
+                        "in": "query",
+                        "description": "Specifies HQ_ONLY, NON_HQ_ONLY, or ANY for office location.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "HQ_ONLY",
+                                "NON_HQ_ONLY",
+                                "ANY"
+                            ],
+                            "example": "HQ_ONLY"
+                        }
+                    },
+                    {
+                        "name": "vintage",
+                        "in": "query",
+                        "description": "Vintage year in range format. Example: '2015^2020' for a range between 2015 and 2020.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^\\d{4}\\^\\d{4}$",
+                            "example": "2015^2020"
+                        }
+                    },
+                    {
+                        "name": "fundDate",
+                        "in": "query",
+                        "description": "Fund date in YYYY-MM-DD range format. Example: '2019-01-01^2020-01-01' for a range between dates.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^\\d{4}-\\d{2}-\\d{2}\\^\\d{4}-\\d{2}-\\d{2}$",
+                            "example": "2019-01-01^2020-01-01"
+                        }
+                    },
+                    {
+                        "name": "commitmentSize",
+                        "in": "query",
+                        "description": "Size of individual commitments in a range format (in millions). Example: '1^50' for a range between 1 and 50 million.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^\\d+\\^\\d+$",
+                            "example": "1^50"
+                        }
+                    },
+                    {
+                        "name": "commitmentDate",
+                        "in": "query",
+                        "description": "Commitment date in YYYY-MM-DD range format. Example: '2000-01-01^2010-01-01' for a range.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^\\d{4}-\\d{2}-\\d{2}\\^\\d{4}-\\d{2}-\\d{2}$",
+                            "example": "2000-01-01^2010-01-01"
+                        }
+                    },
+                    {
+                        "name": "irr",
+                        "in": "query",
+                        "description": "Internal Rate of Return (IRR) in percentage range format. Example: '1^15' for a range between 1% and 15%.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^\\d+\\^\\d+$",
+                            "example": "1^15"
+                        }
+                    },
+                    {
+                        "name": "dpi",
+                        "in": "query",
+                        "description": "DPI multiple in range format. Example: '1^5' for a range between 1x and 5x.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^\\d+\\^\\d+$",
+                            "example": "1^5"
+                        }
+                    },
+                    {
+                        "name": "tvpi",
+                        "in": "query",
+                        "description": "TVPI multiple in range format. Example: '1^3' for a range between 1x and 3x.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^\\d+\\^\\d+$",
+                            "example": "1^3"
+                        }
+                    },
+                    {
+                        "name": "rvpi",
+                        "in": "query",
+                        "description": "RVPI multiple in range format. Example: '1^4' for a range between 1x and 4x.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^\\d+\\^\\d+$",
+                            "example": "1^4"
+                        }
+                    },
+                    {
+                        "name": "industryPreferences",
+                        "in": "query",
+                        "description": "Industry preferences of the fund.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "10"
+                        }
+                    },
+                    {
+                        "name": "verticalsPreferences",
+                        "in": "query",
+                        "description": "Vertical preferences of the fund.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "3D"
+                        }
+                    },
+                    {
+                        "name": "additionalPreferences",
+                        "in": "query",
+                        "description": "Additional investment preferences of the fund.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "IGPS"
+                        }
+                    },
+                    {
+                        "name": "preferredInvestmentAmount",
+                        "in": "query",
+                        "description": "Preferred investment amount in a range format (in millions). Example: '1^10' for a range between 1 and 10 million.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^\\d+\\^\\d+$",
+                            "example": "1^10"
+                        }
+                    },
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "Specify the currency that your other parameters, such as fundSize, are entered as.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "USD"
+                        }
+                    },
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "Number of results per page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "const": 250,
+                            "example": 250
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

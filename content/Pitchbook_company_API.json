@@ -69,10 +69,12 @@
           {
             "name": "city",
             "in": "query",
-            "description": "Filter companies by city. (e.g. Berlin)",
+            "description": "Filter companies by cities. Accepts multiple comma-separated values (e.g., 'Berlin,London').",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^[A-Za-z]+(,[A-Za-z]+)*$",
+              "example": "London,Manchester"
             }
           },
           {
@@ -140,6 +142,39 @@
               "type": "string",
               "pattern": "^(>|<)\\d+$",
               "example": ">2"
+            }
+          },
+          {
+            "name": "revenue",
+            "in": "query",
+            "description": "Find companies by revenue in millions using a range. Specify the range with two values separated by '^'. For example, '1^50' for revenue between 1 and 50 million.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d+\\^\\d+$",
+              "example": "1^50"
+            }
+          },
+          {
+            "name": "industry",
+            "in": "query",
+            "description": "Industry codes. For 'Leisure and Hospitality', use '205040,205050' (where 205040 represents Leisure Facilities and 205050 represents Restaurants and Bars).",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "205040,205050",
+              "example": "205040,205050"
+            }
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "description": "Fixed value for the number of results per page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "const": 250,
+              "example": 250
             }
           }
         ]
@@ -269,35 +304,6 @@
             }
           }
         ]
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "Company": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "location": {
-            "type": "object",
-            "properties": {
-              "city": {
-                "type": "string"
-              },
-              "state": {
-                "type": "string"
-              },
-              "country": {
-                "type": "string"
-              }
-            }
-          }
-        }
       }
     }
   }

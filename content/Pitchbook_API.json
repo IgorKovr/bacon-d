@@ -47,6 +47,17 @@
             }
           },
           {
+            "name": "industry",
+            "in": "query",
+            "description": "Industry codes. For 'Leisure and Hospitality', use '205040,205050' (where 205040 represents Leisure Facilities and 205050 represents Restaurants and Bars).",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "205040,205050",
+              "example": "205040,205050"
+            }
+          },
+          {
             "name": "backingStatus",
             "in": "query",
             "description": "Filter companies by backing status.",
